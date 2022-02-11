@@ -4,10 +4,12 @@ global.User = require("./model/user");
 const express = require("express");
 
 const app = express();
+const cors =require('cors')
 
 app.use(express.json());
 // const router = express.Router();
 console.log("On app.js", User)
+app.use(cors('*'))
 
 const { signup, signin, getAllUsers,
     updateLoggedUser, search, requireSignin } = require('./User/UserView')

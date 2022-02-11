@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+node_modules/
+react-ui/client/node_modules/
