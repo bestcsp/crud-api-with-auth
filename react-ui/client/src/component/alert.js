@@ -11,7 +11,7 @@ const AlertSection = (props) => {
     variant=props.success?'success':props.error?"danger":''
     setTimeout(() => {
         props.success?props.setSucess(false):props.setError(false)
-    }, 1000);
+    }, 2000);
     
 console.log(message,variant,props,"111111111")
   return (

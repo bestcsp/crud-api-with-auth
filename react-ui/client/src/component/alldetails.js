@@ -5,19 +5,22 @@ var axios = require("axios");
 
 
 
-const GetAllRequest = () => {
+const GetAllRequest = (props) => {
     const [Alldata,setAllData]=useState([])
-  
+    // const [token,SetToken] =useState('')
+    // SetToken(props.userdetails)
+    console.log("props",props.userdetails)
 
  
     useEffect(() => {
+      // console.log("token",props.userdetail.token)
         // Update the document title using the browser API
         var config = {
             method: "get",
             url: "http://localhost:5000/getAllUsers",
             headers: {
               Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZlOWQxMWUzYTQ5NDBjYjQ3MmNmNDUiLCJpYXQiOjE2NDQyMTU1ODQsImV4cCI6MTY0NDI0Nzk4NH0.7YhoADrJfqN8KhxaXCK1FzArIUHeXokUD9P-bQJbbVI",
+                `Bearer ${props.userdetails}`,
             },
           };
         axios(config)

@@ -1,7 +1,6 @@
 import { Form, Button, Modal } from "react-bootstrap/";
 import React, { useState, useEffect } from "react";
-import Login from "./loginForm";
-
+import PostApiCall from "./api_call";
 const Signup = (props) => {
     const [firstname,setfirstname] =useState('')
     const [lastname,setlastname] =useState('')
@@ -9,18 +8,31 @@ const Signup = (props) => {
     const [email,setemail] =useState('')
     const [password,setpassword] =useState('')
     const [password1,setpassword1] =useState('')
-
+function SignupApi(){
+  PostApiCall(null,"/signup",null,"post")
+                                        .then((data)=>console.log("output of api",data))
+}
+console.log(process.env.REACT_APP_API_URL)
     // console.log(firstname,lastname,email,mobile,password,props)
     function handleSubmit(event){
         event.preventDefault();
 
-        if(firstname && lastname && email && mobile && password){
-            console.log("All data is filled")
-            console.log(firstname,lastname,email,mobile,password,password1)
-            console.log(props.props.set.data.setSucess(true))
-            console.log(props.props.set.data.setMessage("You have successfully signed Signup"))
+        if(firstname && lastname && email && mobile && password && password1){
+            if(password===password1 && password.length>8){
+              console.log("All data is filled")
+
+              console.log(firstname,lastname,email,mobile,password,password1)
+              console.log(props.props.set.data.setSucess(true))
+              console.log(props.props.set.data.setMessage("You have successfully signed Signup"))
+              props.props.onHide()
+
+            }
+            console.log(props.props.set.data.setError(true))
+            console.log(props.props.set.data.setMessage("Password not valid "))
             props.props.onHide()
-            Login()
+            
+            return
+
 
 
         }

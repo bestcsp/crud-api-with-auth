@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap/";
 import NotLoggedInUser from "./notloggedIn";
 
 export default function Header(props) {
-  
-  const loggedUser=0 ||localStorage.getItem('token')
-  console.log(props,"aasas")
+const [username,setUsername]=useState('')
+  const loggedUser=0 ||localStorage.getItem('user')
+  useEffect(()=>{
+    if(loggedUser){
+      let userdetail=JSON.parse(localStorage.getItem('user'))
+      console.log("userdetail object",userdetail.user)
+      setUsername(userdetail.user.firstname)
+    }
+  },[loggedUser])
+  function handleLogout(){
+    localStorage.clear()
+    window.location.href = '/';
+
+  }
+
   return (
     <>
       <Navbar bg="dark" variant="dark">
@@ -18,12 +30,11 @@ export default function Header(props) {
             
           </Nav>
           {loggedUser? <Nav>
-          <NavDropdown title="ProfileName" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">ProfileName</NavDropdown.Item>
+          <NavDropdown title={username} id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.2">
                 Profile
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Logout</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3" onClick={handleLogout}>Logout</NavDropdown.Item>
               <NavDropdown.Divider />
               
             </NavDropdown>
