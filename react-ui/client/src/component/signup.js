@@ -1,6 +1,8 @@
 import { Form, Button, Modal } from "react-bootstrap/";
 import React, { useState, useEffect } from "react";
-import PostApiCall from "./api_call";
+import Login from "./loginForm";
+import axios from "axios";
+
 const Signup = (props) => {
     const [firstname,setfirstname] =useState('')
     const [lastname,setlastname] =useState('')
@@ -8,9 +10,10 @@ const Signup = (props) => {
     const [email,setemail] =useState('')
     const [password,setpassword] =useState('')
     const [password1,setpassword1] =useState('')
+    const [showPassword,setshowPassword] =useState(false)
+
 function SignupApi(){
-  PostApiCall(null,"/signup",null,"post")
-                                        .then((data)=>console.log("output of api",data))
+  axios.post()
 }
 console.log(process.env.REACT_APP_API_URL)
     // console.log(firstname,lastname,email,mobile,password,props)
@@ -20,12 +23,10 @@ console.log(process.env.REACT_APP_API_URL)
         if(firstname && lastname && email && mobile && password && password1){
             if(password===password1 && password.length>8){
               console.log("All data is filled")
-
               console.log(firstname,lastname,email,mobile,password,password1)
               console.log(props.props.set.data.setSucess(true))
               console.log(props.props.set.data.setMessage("You have successfully signed Signup"))
               props.props.onHide()
-
             }
             console.log(props.props.set.data.setError(true))
             console.log(props.props.set.data.setMessage("Password not valid "))
@@ -66,7 +67,12 @@ console.log(process.env.REACT_APP_API_URL)
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" value={password} placeholder="Password" onChange={e => setpassword(e.target.value)} />
+          <Form.Control type={showPassword?'input':'password'} value={password} placeholder="Password" onChange={e => setpassword(e.target.value)} />
+          <Form.Check 
+            type="checkbox"
+            label={`Show Password`}
+            onChange={e => setshowPassword(!showPassword)}
+          />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword1">
           <Form.Label>Confirm Password</Form.Label>

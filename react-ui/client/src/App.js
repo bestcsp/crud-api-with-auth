@@ -1,28 +1,29 @@
 import "./App.css";
-import Header from "./component/NAVBAR";
-import Footer from "./component/footer";
-import "bootstrap/dist/css/bootstrap.min.css";
-import GetAllRequest from "./component/alldetails";
-import { useState } from "react";
-import AlertSection from "./component/alert";
-// import {BrowserRouter as router,Routes,Route} from 'react-router-dom'
-
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
+// import HOME from "./component/home/home";
+import Profile from "./component/home/profile";
+import NewHOme from "./component/home/newHome";
+import ResetPassword from "./component/home/resetPassword";
 
 function App() {
-  const [success,setSucess]=useState(false)
-  const [error,setError]=useState(false)
-  const [message,setMessage]=useState('')
-  console.log(success,"success value",error,message)
-  const loggedUser=0 ||localStorage.getItem('user')
-
   return (
-    <div className="App">
-      {success?<AlertSection success={success} message={message} setSucess={setSucess} setError={setError} setMessage={setMessage}/>:error?<AlertSection error={error} setError={setError} setSucess={setSucess} message={message} setMessage={setMessage}/>:''}
-      <Header setSucess={setSucess} setError={setError} setMessage={setMessage}/>
-      {loggedUser?<GetAllRequest userdetails={JSON.parse(loggedUser).token}/>:''}
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        {/* <Route path='/' exact element={<HOME/>}></Route> */}
+        <Route path='/' exact element={<NewHOme/>}></Route>
+
+        <Route path='/profile' element={<Profile/>}></Route>
+        <Route path='/resetPassword' element={<ResetPassword/>}></Route>
+
+
+        {/* <Route path='/profile' element={Signin}></Route>
+        <Route path='/signup' element={Signup}></Route> */}
+
+      </Routes>
+    </Router>
   );
+
+
 }
 
 export default App;

@@ -1,9 +1,16 @@
 import { Card } from "react-bootstrap/";
+const style={
+  position: "fixed",
+  left: "0",
+  bottom: "0",
+  width: "100%",
+  textalign: "center",
+}
 
 const Footer = () => {
   return (
     <>
-      <Card>
+      <Card style={style}>
         <Card.Header>CSP</Card.Header>
         <Card.Body>
           <blockquote className="blockquote mb-0">

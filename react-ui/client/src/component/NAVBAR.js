@@ -1,45 +1,49 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect,Link } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap/";
 import NotLoggedInUser from "./notloggedIn";
+import Logout from "./logout";
+import {NavLink} from 'react-router-dom'
+
 
 export default function Header(props) {
-const [username,setUsername]=useState('')
-  const loggedUser=0 ||localStorage.getItem('user')
-  useEffect(()=>{
-    if(loggedUser){
-      let userdetail=JSON.parse(localStorage.getItem('user'))
-      console.log("userdetail object",userdetail.user)
-      setUsername(userdetail.user.firstname)
+  const [username, setUsername] = useState("");
+  const loggedUser = 0 || localStorage.getItem("user");
+  useEffect(() => {
+    if (loggedUser) {
+      let userdetail = JSON.parse(localStorage.getItem("user"));
+      console.log("userdetail object", userdetail.user);
+      setUsername(userdetail.user.firstname);
     }
-  },[loggedUser])
-  function handleLogout(){
-    localStorage.clear()
-    window.location.href = '/';
-
-  }
+  }, [loggedUser]);
 
   return (
     <>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">CSP</Navbar.Brand>
+          <Navbar.Brand href="/">CSP</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="#features">about</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
-            
           </Nav>
-          {loggedUser? <Nav>
-          <NavDropdown title={username} id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.2">
-                Profile
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3" onClick={handleLogout}>Logout</NavDropdown.Item>
-              <NavDropdown.Divider />
-              
-            </NavDropdown>
-    </Nav>:<NotLoggedInUser data={props}/>}
-         
+          {loggedUser ? (
+            <Nav>
+              <NavDropdown title={username} id="basic-nav-dropdown">
+                <NavDropdown.Item href='/profile'>Profile
+
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/resetPassword" >
+                  ResetPassword
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3" onClick={() => Logout()}>
+                  Logout
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+              </NavDropdown>
+            </Nav>
+          ) : (
+            <NotLoggedInUser data={props} />
+          )}
         </Container>
       </Navbar>
       <br />

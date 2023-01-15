@@ -1,5 +1,6 @@
 import React, {useState, useEffect } from 'react';
-import { Card,Button,Toast } from "react-bootstrap/";
+import { Card,Button } from "react-bootstrap/";
+import Logout from './logout';
 
 var axios = require("axios");
 
@@ -29,6 +30,7 @@ const GetAllRequest = (props) => {
         })
         .catch(function (error) {
           console.log(error);
+          Logout()
         });      },[]);
   return <>
   {Alldata.map(data=>{
