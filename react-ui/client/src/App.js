@@ -4,6 +4,7 @@ import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import Profile from "./component/home/profile";
 import NewHOme from "./component/home/newHome";
 import ResetPassword from "./component/home/resetPassword";
+import ADDPOST from "./component/postPage.js/addPostPage";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
 
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/resetPassword' element={<ResetPassword/>}></Route>
+        <Route path='/addPost' element={<ADDPOST/>}></Route>
+
 
 
         {/* <Route path='/profile' element={Signin}></Route>

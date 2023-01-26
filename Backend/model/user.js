@@ -13,7 +13,7 @@ var userSchema = new mongoose.Schema({
     unique: true,
     // validate: [validateEmail, 'Please fill a valid email address'],
   },
-  address: { type: String, required: true, minlength: 3, maxlength: 300 },
+  address: { type: String, maxlength: 300 },
   hash_password: { type: String, required: true, minlength: 3, maxlength: 1024 },
 });
 

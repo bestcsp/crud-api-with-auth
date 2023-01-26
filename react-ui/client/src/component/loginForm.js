@@ -1,5 +1,5 @@
 import { Form, Button, Modal } from "react-bootstrap/";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PostApiCall from "./api_call";
 
 const Login = (props) => {

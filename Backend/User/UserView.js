@@ -1,7 +1,15 @@
 const { User } = require("../model/user");
 const jsonwebtoken = require("jsonwebtoken");
+const projectionData ={
+  _id: 1,
+  firstname: 1,
+  lastname: 1,
+  mobile: 1,
+  email: 1,
+  address:1,
+}
 exports.getUserDetails = async (req, res) => {
-  const User_data = await User.findById({ _id: req.user._id });
+  const User_data = await User.findById({ _id: req.user._id },projectionData);
   if (User_data)
     res
       .status(200)
@@ -26,8 +34,6 @@ exports.forget_password = async (req, res) => {
 
 exports.signup = (req, res) => {
   console.info("Signup Module");
-  // User.User.find()
-
   User.findOne({ email: req.body.email }, (err, user) => {
     if (user)
       return res.status(400).json({
@@ -45,6 +51,7 @@ exports.signup = (req, res) => {
       address,
     });
     _user.save((err, data) => {
+      console.log("-->api.error",err,data)
       if (err) return res.status(400).json({ message: err });
       else {
         jsonWebTokenReturn(data, res);
@@ -57,6 +64,7 @@ const jsonWebTokenReturn = (user, res) => {
   const token = jsonwebtoken.sign({ _id: user._id }, process.env.jwt_secret, {
     expiresIn: "9h",
   });
+  // console.log("token-->",token)
   const { _id, firstname, lastname, fullName, email, role } = user;
   res.status(200).json({
     token: token,
@@ -110,7 +118,6 @@ exports.getAllUsers = (req, res) => {
   const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 0;
   const page = req.query.page ? parseInt(req.query.page) : 0;
   getTasks(pageSize, page).then((data) => res.json(data));
-  // User.find()
 };
 
 exports.updateLoggedUser = (req, res) => {

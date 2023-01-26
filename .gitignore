@@ -1,3 +1,5 @@
 
 node_modules/
 react-ui/client/node_modules/
+Backend/.env
+react-ui/client/.env

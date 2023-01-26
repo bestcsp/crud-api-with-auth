@@ -2,7 +2,6 @@ import Header from "../NAVBAR";
 
 import Footer from "../footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import GetAllRequest from "../alldetails";
 import { useState } from "react";
 import AlertSection from "../alert";
 
@@ -40,7 +39,7 @@ const Layout = (props) => {
         setMessage={setMessage}
       />
       {loggedUser
-        ? // <GetAllRequest userdetails={JSON.parse(loggedUser).token} />
+        ?
           props.children
         : ""}
       <Footer />

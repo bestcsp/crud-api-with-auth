@@ -20,10 +20,11 @@ app.post('/signin', signin)
 app.post('/forgotPassword', forget_password)
 
 //   list api for all users with token and pagination  
-app.get('/getAllUsers', requireSignin, getAllUsers)
-app.get('/getUserDetails', requireSignin, getUserDetails)
-app.post('/updateLoggedUserDetails', requireSignin, updateLoggedUser)
-app.get('/searchData', requireSignin, search)
+app.use(requireSignin)
+app.get('/getAllUsers', getAllUsers)
+app.get('/getUserDetails', getUserDetails)
+app.post('/updateLoggedUserDetails', updateLoggedUser)
+app.get('/searchData', search)
 
 //media Stream
 // app.use("/upload",mediaStream)
