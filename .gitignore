@@ -1,6 +1,7 @@
 
 node_modules/
-react-ui/client/node_modules/
+client/node_modules/
 Backend/.env
 client/.env
+react-ui/
 .env
