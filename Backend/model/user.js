@@ -3,8 +3,13 @@ const bcrypt = require('bcrypt')
 
 var userSchema = new mongoose.Schema({
   firstname: { type: String, required: true, minlength: 3, maxlength: 30 },
-  lastname: { type: String, required: true, minlength: 3, maxlength: 30 },
-  mobile: { type: String, required: true, unique: true, minlength: 10, maxlength: 12 },
+  lastname: { type: String, maxlength: 30 },
+  mobile: { type: String, unique: true, minlength: 10, maxlength: 12 },
+  googleId:{type: String},
+  photo:{type:String,
+    default:
+    "https://res.cloudinary.com/geekysrm/image/upload/v1542221619/default-user.png"
+},
   email: {
     type: String,
     required: true,
@@ -14,7 +19,7 @@ var userSchema = new mongoose.Schema({
     // validate: [validateEmail, 'Please fill a valid email address'],
   },
   address: { type: String, maxlength: 300 },
-  hash_password: { type: String, required: true, minlength: 3, maxlength: 1024 },
+  hash_password: { type: String, minlength: 3, maxlength: 1024 },
 });
 
 userSchema.virtual('password')
