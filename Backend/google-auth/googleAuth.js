@@ -2,6 +2,7 @@ const passport = require("passport");
 const passportConfig = require("../config/passport");
 const jsonwebtoken = require("jsonwebtoken");
 
+
 module.exports = (app) => {
   app.get("/auth/test", (req, res) => {
     res.send("Auth Working properly");
@@ -27,7 +28,7 @@ module.exports = (app) => {
       const token = jsonwebtoken.sign({ _id: user._id }, config.jwt_secret, {
         expiresIn: "9h",
       });
-      res.redirect(`http://localhost:3000/profile?google=${token}`);
+      res.redirect(`${config.redirecUrl}/profile?google=${token}`);
     }
   );
 
