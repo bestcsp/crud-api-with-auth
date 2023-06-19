@@ -21,6 +21,7 @@ const config = () => {
   }
   config["googleClientSecret"] = getValue("googleClientSecret");
   config["googleClientID"] = getValue("googleClientID");
+  config['redirecUrl'] =getValue("redirecUrl")
   return config;
 };
 module.exports = config;
