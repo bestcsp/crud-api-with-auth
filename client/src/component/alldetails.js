@@ -3,22 +3,17 @@ import { Card,Button } from "react-bootstrap/";
 import Logout from './logout';
 
 var axios = require("axios");
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL
 
 
 
 const GetAllRequest = (props) => {
-    const [Alldata,setAllData]=useState([])
-    // const [token,SetToken] =useState('')
-    // SetToken(props.userdetails)
-    console.log("props",props.userdetails)
-
- 
+    const [Alldata,setAllData]=useState([]) 
     useEffect(() => {
-      // console.log("token",props.userdetail.token)
-        // Update the document title using the browser API
+
         var config = {
             method: "get",
-            url: "http://localhost:5000/getAllUsers",
+            url: `${REACT_APP_API_URL}/getAllUsers`,
             headers: {
               Authorization:
                 `Bearer ${props.userdetails}`,
@@ -31,7 +26,7 @@ const GetAllRequest = (props) => {
         .catch(function (error) {
           console.log(error);
           Logout()
-        });      },[]);
+        });      });
   return <>
   {Alldata.map(data=>{
       return <Card key={data._id} style={{ width: '18rem' }}>

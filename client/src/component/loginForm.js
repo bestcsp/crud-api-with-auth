@@ -86,8 +86,8 @@ const Login = (props) => {
                 style={{
                   width: "20px",
                   float: "left",
-                  "margin-right": "10px",
-                  "margin-left": "30px",
+                  "marginRight": "10px",
+                  "marginLeft": "30px",
                 }}
               />
             </div>

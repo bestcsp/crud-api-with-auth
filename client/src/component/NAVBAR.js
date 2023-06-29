@@ -22,8 +22,8 @@ export default function Header(props) {
           <Navbar.Brand href="/">CSP</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="#features">about</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="/about">about</Nav.Link>
+            {/* <Nav.Link href="">Pricing</Nav.Link> */}
           </Nav>
           {loggedUser ? (
             <Nav>

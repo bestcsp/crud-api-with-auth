@@ -10,7 +10,6 @@ const Layout = (props) => {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   console.log(success, "success value", error, message);
-  const loggedUser = 0 || localStorage.getItem("user");
 
   return (
     <div className="App">
@@ -38,10 +37,8 @@ const Layout = (props) => {
         setError={setError}
         setMessage={setMessage}
       />
-      {loggedUser
-        ?
-          props.children
-        : ""}
+    
+        {props.children}
       <Footer />
     </div>
   );

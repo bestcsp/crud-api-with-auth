@@ -5,17 +5,27 @@ import Profile from "./component/home/profile";
 import NewHOme from "./component/home/newHome";
 import ResetPassword from "./component/home/resetPassword";
 import ADDPOST from "./component/postPage.js/addPostPage";
+import About from "./component/about";
 
+const NotFound = () => {
+  return (
+    <div>
+      <h1>The requested page could not be found.</h1>
+    </div>
+  );
+};
 function App() {
   return (
     <Router>
       <Routes>
         {/* <Route path='/' exact element={<HOME/>}></Route> */}
         <Route path='/' exact element={<NewHOme/>}></Route>
+        <Route path='/about' exact element={<About/>}></Route>
 
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/resetPassword' element={<ResetPassword/>}></Route>
         <Route path='/addPost' element={<ADDPOST/>}></Route>
+        <Route path="*" element={NotFound} />
 
 
 
@@ -25,8 +35,6 @@ function App() {
       </Routes>
     </Router>
   );
-
-
 }
 
 export default App;
