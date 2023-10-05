@@ -25,7 +25,7 @@ function App() {
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/resetPassword' element={<ResetPassword/>}></Route>
         <Route path='/addPost' element={<ADDPOST/>}></Route>
-        <Route path="*" element={NotFound} />
+        {/* <Route path="*" element={NotFound} /> */}
 
 
 
